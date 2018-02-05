@@ -8,14 +8,21 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>Nome</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Preço</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Jaqueta</td>
-            </tr>
+            <% for(var i = 0; i < produtos.length; i++) { %>
+                <tr>
+                    <td><%= produtos[i].id %></td>
+                    <td><%= produtos[i].titulo %></td>
+                    <td><%= produtos[i].descricao %></td>
+                    <td><%= produtos[i].preco %></td>
+                </tr>
+
+                <% } %>
         </tbody>
     </table>
 </body>
