@@ -11,15 +11,15 @@ var options = {
     }
 }
 
-var client = http.request(options, function (res) {
+var client = http.request(options, res => {
     console.log(res.statusCode);
-    res.on('data', function (body) {
+    res.on('data', body => {
         console.log('body: ' + body);
     });
 });
 
 var produto = {
-    titulo: 'import test',
+    titulo: '',
     descricao: 'teste teste test',
     preco: 12.90
 }

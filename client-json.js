@@ -9,7 +9,7 @@ var options = {
     }
 }
 
-http.get(options, function (res) {
+http.get(options, (res) => {
     console.log(res.statusCode);
     res.on('data', function (body) {
         console.log('body: ' + body);
