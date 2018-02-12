@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = app => {
     app.get('/products', (req, res, next) => {
         var connection = app.services.ConnectionFactory();
         var productsDAO = new app.dao.ProductsDAO(connection);
