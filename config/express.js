@@ -14,8 +14,9 @@ module.exports = () => {
     app.use(expressValidator());
 
     consign({cwd: 'app'})
-        .include('routes')
-        .then('infra')
+        .include('controllers')
+        .then('services')
+        .then('dao')
         .into(app);
     return app;
 }
