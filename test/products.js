@@ -1,17 +1,20 @@
-var express = require('../config/express')();
-var request = require('supertest')(express);
+let express = require('../config/express')();
+let request = require('supertest')(express);
 
 describe('ProductsController', () => {
 
     afterEach(done => {
-        var conn = express.services.ConnectionFactory();
-        conn.query("delete from produtos", (err, result) => {
-            if(!err) {
-                conn.end();
-                done();
-            }
+        let conn = express.services.ConnectionFactory();
+        conn("produtos").del().asCallback(numOfDeletes => {
+            done();
         });
     });
+
+    after(done => {
+        let conn = express.services.ConnectionFactory();
+        conn.destroy();
+        done();
+    })
     
     it('listing products in json', done => {
         request.get('/products')

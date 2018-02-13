@@ -1,6 +1,6 @@
-var http = require('http');
+let http = require('http');
 
-var options = {
+let options = {
     hostname: 'localhost',
     port: 3000,
     path: '/products',
@@ -11,14 +11,14 @@ var options = {
     }
 }
 
-var client = http.request(options, res => {
+let client = http.request(options, res => {
     console.log(res.statusCode);
     res.on('data', body => {
         console.log('body: ' + body);
     });
 });
 
-var produto = {
+let produto = {
     titulo: '',
     descricao: 'teste teste test',
     preco: 12.90

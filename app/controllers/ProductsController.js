@@ -1,7 +1,7 @@
 module.exports = app => {
     app.get('/products', (req, res, next) => {
-        var connection = app.services.ConnectionFactory();
-        var productsDAO = new app.dao.ProductsDAO(connection);
+        let connection = app.services.ConnectionFactory();
+        let productsDAO = new app.dao.ProductsDAO(connection);
         productsDAO.list((err, results) => {
             if(err) return next(err);
             res.format({
@@ -10,7 +10,7 @@ module.exports = app => {
             });
         });
 
-        connection.end();
+        //connection.end();
     });
 
     app.get('/products/form', (req, res) => {
@@ -18,12 +18,12 @@ module.exports = app => {
     });
 
     app.post('/products', (req, res, next) => {
-        var product = req.body;
+        let product = req.body;
 
         req.assert('titulo', 'Titulo obrigatório').notEmpty();
         req.assert('preco', 'Formato inválido').isFloat();
 
-        var errors = req.validationErrors();
+        let errors = req.validationErrors();
         if(errors) {
             res.format({
                 html: () => res.status(400).render('products/form', { validationErrors: errors, produto: product }),
@@ -33,13 +33,13 @@ module.exports = app => {
             return;
         }
 
-        var connection = app.services.ConnectionFactory();
-        var productsDAO = new app.dao.ProductsDAO(connection);
+        let connection = app.services.ConnectionFactory();
+        let productsDAO = new app.dao.ProductsDAO(connection);
         productsDAO.save(product, (err, results) => {
             if(err) return next(err);
             res.redirect('/products');
         });
 
-        connection.end();
+        //connection.end();
     });
 }

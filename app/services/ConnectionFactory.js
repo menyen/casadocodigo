@@ -1,4 +1,5 @@
-let mysql = require('mysql');
+const Knex = require('knex');
+let knex = null;
 
 class ConnectionFactory {
     constructor() {
@@ -6,14 +7,19 @@ class ConnectionFactory {
     }
 
     static getConnection() {
-        let database = 'casadocodigo_nodejs';
-        if(process.env.NODE_ENV == 'test') database += '_test';
-        return mysql.createConnection({
-            host : 'localhost',
-            user : 'ng',
-            password : '',
-            database : database
-        });
+        if(!knex) {
+            knex = Knex({
+                client: 'mysql',
+                connection: {
+                    host: 'localhost',
+                    user: 'ng',
+                    password: '',
+                    database: 'casadocodigo_nodejs' + (process.env.NODE_ENV == 'test' ? '_test' : '')
+                },
+                pool: {min: 0, max: 7}
+            });
+        }
+        return knex;
     }
 }
 

@@ -1,6 +1,6 @@
-var http = require('http');
+let http = require('http');
 
-var options = {
+let options = {
     hostname: 'localhost',
     port: 3000,
     path: '/products',

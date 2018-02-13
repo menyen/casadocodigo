@@ -1,6 +1,6 @@
-var app = require('./config/express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const app = require('./config/express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 app.set('io', io);
 

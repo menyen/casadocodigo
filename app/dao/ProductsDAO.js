@@ -4,11 +4,17 @@ class ProdutosDAO {
     }
 
     list(callback) {
-        this._connection.query('select * from produtos', callback);
+        this._connection
+            .select()
+            .from('produtos')
+            .asCallback(callback);
     }
 
     save(product, callback) {
-        this._connection.query('insert into produtos set ?', product, callback);
+        this._connection
+            .insert(product)
+            .into('produtos')
+            .then(callback());
     }
 }
 

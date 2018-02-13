@@ -1,10 +1,10 @@
-var express = require('express');
-var consign = require('consign');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
+const express = require('express');
+const consign = require('consign');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 
 module.exports = () => {
-    var app = express();
+    const app = express();
 
     app.use(express.static('./app/public'));
     app.set('view engine', 'ejs');
@@ -22,11 +22,6 @@ module.exports = () => {
 
     app.use((req, res, next) => {
         res.status(404).render('errors/404');
-        next();
-    });
-
-    app.use((error, req, res, next) => {
-        res.status(500).render('errors/500');
         next();
     });
 
