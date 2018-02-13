@@ -7,6 +7,6 @@ module.exports = app => {
             res.render('home/index', {livros: results})
         });
 
-        connection.end();
+        //connection.end();
     });
 }
